@@ -1,0 +1,53 @@
+<section class="row align-items-center justify-content-between shadow my-2 mx-1">
+    <header class="col-12 col-lg-12">
+        <nav class="row bg-light ">
+            <div class="col-12 col-lg-6">
+                <h4 class="text-muted"> Minhas inscrições</h4>
+            </div>
+            <div class="col-12 col-lg-4">
+                <form class="input-group mb-3">
+                    <input type="text" class="form-control" [formControl]="filter" placeholder="O que procura?" aria-label="search vacancies" aria-describedby="basic-addon2" value=" ">
+                    <div class="input-group-append" ngbTooltip="Apenas digite o termo desejado" placement="bottom left">
+                        <button class="btn btn-primary" type="button" disabled="true">
+                            <i-bs name="search"> </i-bs>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <section class="col-12 col-lg-12" style="max-height:300px;overflow-x: scroll;">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">Ordem</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Quatidade de vagas</th>
+            <th scope="col">Unidade</th>
+            <th scope="col">Ações</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let v of vacancie$ | async; index as i">
+            <th scope="row">{{ i+1 }}</th>
+            <td>
+              <ngb-highlight [result]="v.DESCRICAO | lowercase" [term]="filter.value"></ngb-highlight>
+            </td>
+            <td><ngb-highlight [result]="v.QUANTIDADE | number" [term]="filter.value"></ngb-highlight></td>
+            <td><ngb-highlight [result]="v.UNIDADE | lowercase" [term]="filter.value"></ngb-highlight></td>
+            <td>
+                <button class="btn btn-primary btn-sm" ngbTooltip="Ver detalhes" (click)="openDetails(v)">
+                    <i-bs name="eye"></i-bs>
+                </button>
+                <button class="btn btn-danger btn-sm" ngbTooltip="Cancelar inscrição" (click)="deleteMyInscription(v)">
+                  <i-bs name="xCircle"></i-bs>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+    </section>
+    <footer class="col-12 col-lg-12">
+
+    </footer>
+</section>

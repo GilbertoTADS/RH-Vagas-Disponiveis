@@ -1,0 +1,140 @@
+<form 
+        id="login" 
+        class="row" 
+        novalidate 
+        [formGroup]="authForm" 
+        (ngSubmit)="register()"
+    >
+<div class="col-12 col-sm-10 col-md-6 col-lg-5">
+    <label for="fullName" class="col col-form-label"><i-bs name="personCircle"></i-bs> Nome completo<span class="text-danger">*</span> </label>
+    <input 
+        #inputFullName
+        type="text" 
+        class="form-control" 
+        id="fullName"
+        name="fullName" 
+        placeholder="Digite seu nome completo"
+        formControlName="fullName"
+        autocomplete="off"
+    >
+    <small class="form-text text-success" *ngIf="authForm.get('fullName')!.valid && authForm.get('fullName')!.touched">Ok</small>
+    <small class="form-text text-danger" *ngIf="authForm.get('fullName')!.invalid && authForm.get('fullName')!.touched">Valor inválido</small>
+</div>
+<div class="col-12 col-sm-10 col-md-6 col-lg-4">
+    <label for="birthDate" class="col col-form-label"><i-bs name="calendarCheck"></i-bs> Data nascimento<span class="text-danger">*</span> </label>
+    <input 
+    #inputBirthDate
+    type="date" 
+    class="form-control" 
+    id="birthDate"
+    name="birthDate" 
+    placeholder="Digite seu nome completo"
+    formControlName="birthDate"
+    autocomplete="off"
+    >
+    <small class="form-text text-success" *ngIf="authForm.get('birthDate')!.valid && authForm.get('birthDate')!.touched">Ok</small>
+    <small class="form-text text-danger" *ngIf="authForm.get('birthDate')!.invalid && authForm.get('birthDate')!.touched">Valor inválido</small>
+</div>
+<div class="col-6 col-sm-10 col-md-6 col-lg-3">
+    <label for="identifier" class="col col-form-label"><i-bs name="personBadgeFill"></i-bs> CPF <span class="d-none d-md-inline">ou CNPJ</span><span class="text-danger">*</span> </label>
+    <input 
+    #inputIdentifier
+    type="text" 
+    class="form-control" 
+    id="identifier"
+    name="identifier" 
+    placeholder="CPF ou CNPJ"
+    formControlName="identifier"
+    autocomplete="off"
+    (keyup)="inputIdentifier.value = validations.onlyNumber(inputIdentifier.value)"
+    >
+    <small class="text-muted"> Somente números</small>
+    <small class="form-text text-success" *ngIf="authForm.get('identifier')!.valid && authForm.get('identifier')!.touched">Ok</small>
+    <small class="form-text text-danger" *ngIf="authForm.get('identifier')!.invalid && authForm.get('identifier')!.touched">Valor inválido</small>
+</div>
+<div class="col-6 col-sm-5 col-md-3">
+    <label for="sex" class="col col-form-label"><i-bs name="genderAmbiguous"></i-bs> Sexo</label>
+    <select class="form-control" name="sex" id="sex" formControlName="sex">
+        <option value="U">Selecione</option>
+        <option value="M">Masculino</option>
+        <option value="F">Feminino</option>      
+    </select>
+    <small class="form-text text-success" *ngIf="authForm.get('sex')!.valid && authForm.get('sex')!.touched">Ok</small>
+    <small class="form-text text-danger" *ngIf="authForm.get('sex')!.invalid && authForm.get('sex')!.touched">Valor inválido</small>
+</div>
+<div class="col-sm-5 col-md-3">
+    <label for="maritalStatus" class="col col-form-label"><i-bs name="peopleFill"></i-bs> Estado civil</label>
+    <select class="form-control" name="maritalStatus" id="maritalStatus" formControlName="maritalStatus">
+        <option value="U">Selecione</option>
+        <option value="S">Solteiro</option>
+        <option value="C">Casado</option>      
+        <option value="D">Divorciado</option>      
+        <option value="V">Viúvo</option>      
+    </select>
+    <small class="form-text text-success" *ngIf="authForm.get('maritalStatus')!.valid && authForm.get('maritalStatus')!.touched">Ok</small>
+    <small class="form-text text-danger" *ngIf="authForm.get('maritalStatus')!.invalid && authForm.get('maritalStatus')!.touched">Valor inválido</small>
+</div>
+<div class="col-sm-10 col-md-6 col-lg-3">
+    <label for="stateBirth" class="col col-form-label"><i-bs name="pinMapFill"></i-bs> UF  de nascimento</label>
+    <select class="form-control" name="stateBirth" id="stateBirth" formControlName="stateBirth">
+        <option value="U" disabled selected>Selecione</option>
+        <option value="AC">ACRE</option>
+        <option value="AL">ALAGOAS</option>
+        <option value="AP">AMAPÁ</option>
+        <option value="AM">AMAZONAS</option>
+        <option value="BA">BAHIA</option>
+        <option value="CE">CEARÁ</option>
+        <option value="DF">DISTRITO FEDERAL</option>
+        <option value="ES">ESPÍRITO SANTO</option>
+        <option value="GO">GOIÁS</option>
+        <option value="MA">MARANHÃO</option>
+        <option value="MT">MATO GROSSO</option>
+        <option value="MS">MATO GROSSO DO SUL</option>
+        <option value="MG">MINAS GERAIS</option>
+        <option value="PA">PARÁ</option>
+        <option value="PB">PARAÍBA</option>
+        <option value="PR">PARANÁ</option>
+        <option value="PE">PERNAMBUCO</option>
+        <option value="PI">PIAUÍ</option>
+        <option value="RJ">RIO DE JANEIRO</option>
+        <option value="RN">RIO GRANDE DO NORTE</option>
+        <option value="RS">RIO GRANDE DO SUL</option>
+        <option value="RO">RONDÔNIA</option>
+        <option value="RR">RORAIMA</option>
+        <option value="MG">MINAS GERAIS</option>
+        <option value="PA">PARÁ</option>
+        <option value="PB">PARAÍBA</option>
+        <option value="PR">PARANÁ</option>
+        <option value="PE">PERNAMBUCO</option>
+        <option value="PI">PIAUÍ</option>
+        <option value="RJ">RIO DE JANEIRO</option>
+        <option value="RN">RIO GRANDE DO NORTE</option>
+        <option value="RS">RIO GRANDE DO SUL</option>
+        <option value="RO">RONDÔNIA</option>
+        <option value="RR">RORAIMA</option>
+        <option value="SC">SANTA CATARINA</option>
+        <option value="SP">SÃO PAULO</option>
+        <option value="SE">SERGIPE</option>
+        <option value="TO">TOCANTINS</option>
+    </select>
+    <small class="form-text text-success" *ngIf="authForm.get('identifier')!.valid && authForm.get('identifier')!.touched">Ok</small>
+</div>
+<div class="ml-4 col-sm-10 col-md-6 col-lg-3 my-auto">
+    <input id="deficient" name="deficient" class="form-check-input" type="checkbox" value="T" formControlName="deficient">
+    <label class="form-check-label" for="flexCheckDefault">
+        Deficiente
+    </label>
+</div>
+<div class="col-12 col-md-3">
+    <label class="form-check-label" for="wage">
+        <i-bs name="cashCoin"></i-bs> Pretenção Salarial
+    </label>
+    <input currencyMask [options]="{prefix:'', thousands: '.', decimal: ',' }" placeholder="... " id="wage" name="wage" rows="4"class="form-control" type="text" formControlName="wage">
+</div>
+<div class="col-12 col-md-6">
+    <label class="form-check-label" for="flexCheckDefault">
+        <i-bs name="cardText"></i-bs> Apresentação
+    </label>
+    <textarea placeholder="Fale um pouco sobre você..." id="presentation" name="presentation" rows="4"class="form-control" type="checkbox" value="T" formControlName="presentation"></textarea>
+</div>
+</form>

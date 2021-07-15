@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "vagas"
+  "defaultProject": "vagas",
+  "cli": {
+    "analytics": "36df0fe2-d6e9-4525-abd9-e69b974a70e0"
+  }
 }

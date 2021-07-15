@@ -1,0 +1,110 @@
+<form 
+        id="login" 
+        class="row" 
+        novalidate 
+        [formGroup]="authForm" 
+        (ngSubmit)="register()"
+    >
+<div class="col-sm-5 col-md-6 col-lg-3">
+    <label for="cep" class="col col-form-label"><i-bs name="compass"></i-bs> CEP<span class="text-danger">*</span> </label>
+    <div class="d-flex">
+        <input 
+        #inputcep
+        type="number" 
+        class="form-control d-inline" 
+        id="cep"
+        name="cep" 
+        placeholder="Digite o CEP"
+        formControlName="cep"
+        autocomplete="off"
+        (keyup)="inputcep.value = validations.onlyNumber(inputcep.value);
+        $event.key == 'Enter' && inputcep.value.length === 8 ? getAddressByCep(inputcep.value) : null;"
+        >
+        <button type="button" class="btn btn-warning btn-sm" (click)="getAddressByCep(inputcep.value)" [disabled]="inputcep.value.length !== 8">Buscar</button>
+    </div>
+    <small *ngIf="messageErrorCEP" class="d-block text-danger">{{messageErrorCEP}}</small>
+    <small class="text-muted">Apenas números</small>
+    <small class="form-text text-success" *ngIf="authForm.get('cep')!.valid && authForm.get('cep')!.touched">Ok</small>
+    <small class="form-text text-danger" *ngIf="authForm.get('cep')!.invalid && authForm.get('cep')!.touched">Valor inválido</small>
+</div>
+<div class="col-sm-10 col-md-6 col-lg-4">
+    <label for="street" class="col col-form-label"><i-bs name="geoAltFill"></i-bs> Logradouro<span class="text-danger">*</span> </label>
+    <input 
+    #inputStreet
+    type="text" 
+    class="form-control" 
+    id="street"
+    name="street" 
+    placeholder="Rua,Travessa, Av. e etc"
+    formControlName="street"
+    autocomplete="off"
+    (keyup)="inputStreet.value = inputStreet.value.toUpperCase()"
+    >
+    <small class="form-text text-success" *ngIf="authForm.get('street')!.valid && authForm.get('street')!.touched">Ok</small>
+    <small class="form-text text-danger" *ngIf="authForm.get('street')!.invalid && authForm.get('street')!.touched">Valor inválido</small>
+</div>
+<div class="col-sm-2 col-lg-2">
+    <label for="homeNumber" class="col col-form-label"><i-bs name="geoAltFill"></i-bs> Nº<span class="text-danger">*</span> </label>
+    <input 
+    #inputhomeNumber
+    type="text" 
+    class="form-control" 
+    id="homeNumber"
+    name="homeNumber" 
+    placeholder="Ex: 22b"
+    formControlName="homeNumber"
+    autocomplete="off"
+    >
+    <small class="form-text text-success" *ngIf="authForm.get('homeNumber')!.valid && authForm.get('homeNumber')!.touched">Ok</small>
+    <small class="form-text text-danger" *ngIf="authForm.get('homeNumber')!.invalid && authForm.get('homeNumber')!.touched">Valor inválido</small>
+</div>
+<div class="col-sm-10 col-md-6 col-lg-3">
+    <label for="district" class="col col-form-label"><i-bs name="geoAltFill"></i-bs> Bairro<span class="text-danger">*</span> </label>
+    <input 
+    #inputDistrict
+    type="text" 
+    class="form-control" 
+    id="district"
+    name="district" 
+    placeholder="Nome do bairro"
+    formControlName="district"
+    autocomplete="off"
+    (keyup)="inputDistrict.value = inputDistrict.value.toUpperCase()"
+    >
+    <small class="form-text text-success" *ngIf="authForm.get('district')!.valid && authForm.get('district')!.touched">Ok</small>
+    <small class="form-text text-danger" *ngIf="authForm.get('district')!.invalid && authForm.get('district')!.touched">Valor inválido</small>
+</div>
+<div class="col-sm-10 col-md-3">
+    <label for="city" class="col col-form-label"><i-bs name="geoAltFill"></i-bs> Cidade<span class="text-danger">*</span> </label>
+    <input 
+    #inputCity
+    type="text" 
+    class="form-control" 
+    id="city"
+    name="city" 
+    placeholder="Nome da cidade"
+    formControlName="city"
+    autocomplete="off"
+    (keyup)="inputCity.value = inputCity.value.toUpperCase()"
+    >
+    <small class="form-text text-success" *ngIf="authForm.get('city')!.valid && authForm.get('city')!.touched">Ok</small>
+    <small class="form-text text-danger" *ngIf="authForm.get('city')!.invalid && authForm.get('city')!.touched">Valor inválido</small>
+</div>
+<div class="col-sm-10 col-md-3">
+    <label for="state" class="col col-form-label"><i-bs name="geoAltFill"></i-bs> Estado<span class="text-danger">*</span> </label>
+    <input 
+    #inputState
+    type="text" 
+    class="form-control" 
+    id="state"
+    name="state" 
+    placeholder="Sigla do estado"
+    formControlName="state"
+    autocomplete="off"
+    (keyup)="inputState.value = validations.onlyText(inputState.value.toUpperCase())"
+    >
+    <small class="text-muted"> Apenas a sigla</small>
+    <small class="form-text text-success" *ngIf="authForm.get('state')!.valid && authForm.get('state')!.touched">Ok</small>
+    <small class="form-text text-danger" *ngIf="authForm.get('state')!.invalid && authForm.get('state')!.touched">Valor inválido</small>
+</div>
+</form>

@@ -1,0 +1,98 @@
+<form 
+    novalidate 
+    (ngSubmit)="register()"
+    id="login" 
+    *ngFor="let control of experiences.controls;index as i"
+>
+<div 
+    class="row border py-1 mb-2"
+    [formGroup]="control"
+    >
+    <h6 class="col-12"> 
+        Experiencia {{ i+1 }}º 
+        
+        <button class="btn btn-warning btn-sm ml-5" type="button" ngbTooltip="Adicionar Item" (click)="newExperiences()">
+            <i-bs name="plusCircle"></i-bs>
+             Novo
+        </button>
+        <button class="btn btn-danger btn-sm" type="button" ngbTooltip="Excluir Item" (click)="deleteExperience(i)" [disabled]="experiences.controls.length < 2">
+            <i-bs name="dashCircle"></i-bs>
+             Remover
+        </button>
+    </h6>
+    <div class="col-sm-10 col-md-6 col-lg-4">
+        <label for="nameBussiness{{i}}" class="col col-form-label"><i-bs name="houseDoor"></i-bs> Empresa</label>
+        <input 
+            #inputNameBussiness
+            type="text" 
+            class="form-control" 
+            id="nameBussiness{{i}}"
+            placeholder="Nome completo da empresa"
+            autocomplete="off"
+            formControlName="nameBussiness"
+        >
+
+        <!-- <small class="form-text text-success" *ngIf="authForm.get('experiences')!.valid && authForm.get('experiences')!.touched">Ok</small>
+        <small class="form-text text-danger" *ngIf="authForm.get('experiences')!.invalid && authForm.get('experiences')!.touched">Valor inválido</small> -->
+    </div>
+    <div class="col-sm-10 col-md-4 col-lg-3">
+        <label for="dateInited{{i}}" class="col col-form-label"><i-bs name="calendarCheck"></i-bs> Início</label>
+        <input 
+            #inputdateInited
+            type="date" 
+            class="form-control" 
+            id="dateInited{{i}}"
+            name="dateInited{{i}}" 
+            autocomplete="off"
+            formControlName="dateInited"
+        >
+        <!-- <small class="form-text text-success" *ngIf="authForm.get('experiences')!.valid && authForm.get('experiences')!.touched">Ok</small>
+        <small class="form-text text-danger" *ngIf="authForm.get('experiences')!.invalid && authForm.get('experiences')!.touched">Valor inválido</small> -->
+    </div>
+    <div class="col-sm-10 col-md-4 col-lg-3">
+        <label for="dateFinal{{i}}" class="col col-form-label"><i-bs name="calendarCheck"></i-bs> Saída</label>
+        <input 
+            #inputdateFinal
+            type="date" 
+            class="form-control" 
+            id="dateFinal{{i}}"
+            name="dateFinal{{i}}" 
+            autocomplete="off"
+            formControlName="dateFinal"
+        >
+        <!-- <small class="form-text text-success" *ngIf="authForm.get('experiences')!.valid && authForm.get('experiences')!.touched">Ok</small>
+        <small class="form-text text-danger" *ngIf="authForm.get('experiences')!.invalid && authForm.get('experiences')!.touched">Valor inválido</small> -->
+    </div>
+    <div class="col-sm-10 col-md-6 col-lg-4">
+        <label for="office" class="col col-form-label"><i-bs name="briefcaseFill"></i-bs> Cargo</label>
+        <input 
+            #inputoffice
+            type="text" 
+            class="form-control" 
+            id="office"
+            name="office" 
+            placeholder="Nome do cargo"
+            autocomplete="off"
+            formControlName="office"
+        >
+        <!-- <small class="form-text text-success" *ngIf="authForm.get('experiences')!.valid && authForm.get('experiences')!.touched">Ok</small>
+        <small class="form-text text-danger" *ngIf="authForm.get('experiences')!.invalid && authForm.get('experiences')!.touched">Valor inválido</small> -->
+    </div>
+    <div class="col-sm-10 col-md-6 col-lg-5">
+        <label for="describe" class="col col-form-label"><i-bs name="tags"></i-bs> Atribuições</label>
+        <textarea 
+            #inputdescribe
+            type="text" 
+            class="form-control" 
+            id="describe"
+            name="describe" 
+            placeholder="Descreva suas atividades"
+            autocomplete="off" 
+            formControlName="describe"
+        ></textarea>
+        <!-- <small class="form-text text-success" *ngIf="authForm.get('experiences')!.valid && authForm.get('experiences')!.touched">Ok</small>
+        <small class="form-text text-danger" *ngIf="authForm.get('experiences')!.invalid && authForm.get('experiences')!.touched">Valor inválido</small> -->
+    </div>
+    </div>
+</form>
+    

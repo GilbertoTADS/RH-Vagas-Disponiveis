@@ -1,0 +1,104 @@
+<section class="row align-items-between my-3" >
+    <div class="col col-sm-12 offset-md-1 col-md-10 offset-lg-0 col-lg-12">
+      <form 
+        id="login" 
+        class="row" 
+        novalidate 
+        [formGroup]="authForm" 
+        (ngSubmit)="register()"
+    >
+    <fieldset class="col-12 offset-md-1 col-md-10 shadow">
+      <legend > CADASTRE-SE</legend>
+        <fieldset class="row mx-1 my-1">
+            <div class="col">
+                <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+                    <li [ngbNavItem]="1">
+                      <a ngbNavLink> 
+                        <i-bs name="personBadgeFill"></i-bs> 
+                         <span class="d-none d-md-inline"> Dados pessoais<span class="text-danger">*</span> </span>  
+                      </a>
+                      <ng-template ngbNavContent>
+                        <app-personal-data></app-personal-data>
+                      </ng-template>
+                    </li>
+                    <li [ngbNavItem]="2">
+                      <a ngbNavLink> 
+                        <i-bs name="telephone"></i-bs> 
+                        <span class="d-none d-md-inline"> Contatos<span class="text-danger">*</span></span> 
+                      </a>
+                      <ng-template ngbNavContent>
+                        <app-contact></app-contact>
+                      </ng-template>
+                    </li>
+                    <li [ngbNavItem]="3" >
+                      <a ngbNavLink>
+                        <i-bs name="geoAltFill"></i-bs>  
+                        <span class="d-none d-md-inline"> Endereço<span class="text-danger">*</span> </span>
+                      </a>
+                      <ng-template ngbNavContent>
+                        <app-address></app-address>
+                      </ng-template>
+                    </li>
+                    <li [ngbNavItem]="4" >
+                      <a ngbNavLink>
+                        <i-bs name="personPlus"></i-bs>
+                        <span class="d-none d-md-inline"> Formação</span>
+                      </a>
+                      <ng-template ngbNavContent>
+                        <app-formation></app-formation>
+                      </ng-template>
+                    </li>
+                    <li [ngbNavItem]="5" >
+                      <a ngbNavLink>
+                        <i-bs name="briefcaseFill"></i-bs>
+                        <span class="d-none d-md-inline"> Experiência</span>  
+                      </a>
+                      <ng-template ngbNavContent>
+                        <app-experience></app-experience>
+                      </ng-template>
+                    </li>
+                  </ul>
+                  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+                  
+            </div>
+            <router-outlet></router-outlet>
+        </fieldset>
+      <div class="mb-3 row align-items-center">
+        <div class="col offset-md-0 col-md-6">
+          <div class="d-flex justify-content-between">
+            <a 
+                routerLink="/login"
+                class="link-item"
+                
+            >
+                <i-bs name="boxArrowRight"></i-bs> Já tem cadastro?
+            </a>
+          </div>
+        </div>
+        <div class="col col-md-6 offset-lg-2 col-lg-3">
+          <button 
+              class="btn btn-primary btn-sm btn-block" 
+              type="submit" 
+              ngbTooltip="Preencha os campos para entrar"
+          >
+          <i-bs name="boxArrowRight"></i-bs> CADASTRAR-ME
+          </button>
+          <small class="text-danger" *ngIf="formValid === false && formValid !== null">
+            Há campos inválidos, volte e corrija!
+        </small>
+      </div>
+    </div>
+      <section class="row" *ngIf="authFailed">
+        <div class="col">
+          <p class="alert alert-danger text-center">Identificador ou senha inválido</p>
+        </div>
+      </section>
+      <div class="col-12">
+        <small class="text-muted">Campos marcados com <span class="text-danger">*</span> são obrigatórios</small>
+      </div>
+    </fieldset>
+    
+  </form>
+    </div>
+    
+  </section>

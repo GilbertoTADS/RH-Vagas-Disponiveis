@@ -1,0 +1,9 @@
+.box-shadow{
+    box-shadow: rgb(29, 29, 29) 5px 5px 5px;
+}
+.fixed-header-top{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}

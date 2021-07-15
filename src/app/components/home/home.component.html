@@ -1,0 +1,129 @@
+<section class="row mt-4 shadow">
+    <!-- <div class="row" style="border:1px solid green;"> -->
+        <header class="col-12 offset-md-3 col-md-8">
+            <section class="row">
+                <h4 class="col-7 col-md-6"> {{ greeting }}</h4>
+                <nav class="col-5 col-md-6">
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-danger btn-sm" (click)="exit()">
+                          <i-bs name="doorOpenFill"></i-bs>
+                          Sair
+                        </button>
+                    </div>
+                </nav>
+            </section>
+        </header>
+        <article class="col-3 col-md-3" >
+          <div class="row justify-content-center d-lg-none">
+            <div class="col-12 px-0">
+              <button #collapseMenu type="button" [class.w-100]="!isCollapsed" class="btn btn-outline-primary" (click)="collapse.toggle();" [attr.aria-expanded]="!isCollapsed"
+              aria-controls="collapseExample">
+                <i-bs name="menuButtonWide"></i-bs><span class="d-none d-md-inline"> Menu</span>
+             </button>
+          </div>
+          
+          </div>
+            <ul class="row" ngbNav #nav="ngbNav" [(activeId)]="active" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+                <li [ngbNavItem]="0" class="col-12 bg-warning mb-1 ">
+                    <a ngbNavLink>
+                      <i-bs name="star"></i-bs> 
+                      <span class="d-none d-md-inline">Oportunidades</span> 
+                    </a>
+                    <ng-template ngbNavContent>
+                      <app-available-vacancies></app-available-vacancies>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="1" [class.active-primary-light]="active == 1" class="col-12 bg-primary mb-1 ">
+                    <a ngbNavLink class="text-white">
+                      <i-bs name="personBadgeFill"></i-bs> 
+                      <span class="d-none d-md-inline">  Dados pessoais</span>
+                      <span class="d-none d-md-inline text-danger">*</span> 
+                    </a>
+                    <ng-template ngbNavContent>
+                      <button class="btn btn-warning btn-sm" (click)="updateUser()" [class.d-none]="active == 0" ngbTooltip="Isso atualizará todos os seus dados">
+                        <i-bs name="arrowClockwise"></i-bs>
+                        Atualizar
+                      </button>
+                      <app-personal-data></app-personal-data>
+                    </ng-template>
+                  </li>
+                  <li [ngbNavItem]="2" [class.active-primary-light]="active == 2" class="col-12 bg-primary mb-1 ">
+                    <a ngbNavLink class="text-white"> 
+                      <i-bs name="telephone"></i-bs> 
+                      <span class="d-none d-md-inline"> Contatos</span> 
+                      <span class="d-none d-md-inline text-danger">*</span> 
+                    </a>
+                    <ng-template ngbNavContent>
+                      <button class="btn btn-warning btn-sm" (click)="updateUser()" [class.d-none]="active == 0" ngbTooltip="Isso atualizará todos os seus dados">
+                        <i-bs name="arrowClockwise"></i-bs>
+                        Atualizar
+                      </button>
+                      <app-contact></app-contact>
+                    </ng-template>
+                  </li>
+                  <li [ngbNavItem]="3" [class.active-primary-light]="active == 3" class="col-12 bg-primary mb-1 " >
+                    <a ngbNavLink class="text-white">
+                      <i-bs name="geoAltFill"></i-bs> 
+                      <span class="d-none d-md-inline"> Endereço</span>  
+                      <span class="d-none d-md-inline text-danger">*</span> 
+                    </a>
+                    <ng-template ngbNavContent>
+                      <button class="btn btn-warning btn-sm" (click)="updateUser()" [class.d-none]="active == 0" ngbTooltip="Isso atualizará todos os seus dados">
+                        <i-bs name="arrowClockwise"></i-bs>
+                        Atualizar
+                      </button>
+                      <app-address></app-address>
+                    </ng-template>
+                  </li>
+                  <li [ngbNavItem]="4" [class.active-primary-light]="active == 4" class="col-12 bg-primary mb-1 " >
+                    <a ngbNavLink class="text-white">
+                      <i-bs name="personPlus"></i-bs>  
+                      <span class="d-none d-md-inline"> Formação</span> 
+                    </a>
+                    <ng-template ngbNavContent>
+                      <button class="btn btn-warning btn-sm" (click)="updateUser()" [class.d-none]="active == 0" ngbTooltip="Isso atualizará todos os seus dados">
+                        <i-bs name="arrowClockwise"></i-bs>
+                        Atualizar
+                      </button>
+                      <app-formation></app-formation>
+                    </ng-template>
+                  </li>
+                  <li [ngbNavItem]="5" [class.active-primary-light]="active == 5" class="col-12 bg-primary mb-1 " >
+                    <a ngbNavLink class="text-white">
+                      <i-bs name="briefcaseFill"></i-bs> 
+                      <span class="d-none d-md-inline"> Experiência</span>  
+                    </a>
+                    <ng-template ngbNavContent>
+                      <button class="btn btn-warning btn-sm" (click)="updateUser()" [class.d-none]="active == 0" ngbTooltip="Isso atualizará todos os seus dados">
+                        <i-bs name="arrowClockwise"></i-bs>
+                        Atualizar
+                      </button>
+                      <app-experience></app-experience>
+                    </ng-template>
+                  </li>
+                  <li [ngbNavItem]="6" [class.active-primary-light]="active == 6" class="col-12 bg-primary mb-1" >
+                    <a ngbNavLink class="text-white">
+                      <i-bs name="checkCircleFill"></i-bs> 
+                      <span class="d-none d-md-inline"> Minhas inscrições</span>  
+                    </a>
+                    <ng-template ngbNavContent>
+                      <app-my-inscriptions></app-my-inscriptions>
+                    </ng-template>
+                  </li>
+                  <li [ngbNavItem]="7" [class.active-primary-light]="active == 7" class="col-12 bg-primary mb-1 " >
+                    <a ngbNavLink class="text-white">
+                      <i-bs name="lockFill"></i-bs> 
+                      <span class="d-none d-md-inline"> Minhas credenciais</span>  
+                    </a>
+                    <ng-template ngbNavContent>
+                      <app-my-credentials></app-my-credentials>
+                    </ng-template>
+                  </li>
+            </ul>
+        </article>
+        <section [class.col-12]="isCollapsed" class="col-9">
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        </section>
+    <!-- </div> -->
+
+</section>

@@ -1,0 +1,21 @@
+export interface UserStorage{
+    maritalStatus:string;
+    identifier:string;
+    fullName:string;
+    birthDate:string;
+    sex:string;
+    email:string;
+    cell:string;
+    cellMessage:string;
+    urlLinkedin:string;
+    cep:string;
+    street:string;
+    homeNumber:string;
+    district:string;
+    city:string;
+    state:string;
+    stateBirth:string;
+    deficient:string;
+    presentation:string;
+    wage:number;
+}

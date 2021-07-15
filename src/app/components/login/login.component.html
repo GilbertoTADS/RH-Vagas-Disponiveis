@@ -1,0 +1,88 @@
+<section class="row mt-5">
+  <nav class="offset-4 col-4">
+    <div class="d-flex justify-content-end align-items-center">
+      <app-modal-global 
+        [classBtnOpen]="'btn btn-warning btn-sm'"
+        [btnText]="'Oportunidades'"
+        [classIconButton]="'star'"
+        [nameIconButton]="'star'"
+        [content]="componentVacancies"
+        ></app-modal-global>
+    </div>
+  </nav>
+  <div class="col col-sm-12 offset-md-2 col-md-8">
+    <form 
+      id="login" 
+      class="row justify-content-center justify-content-sm-start" 
+      novalidate 
+      [formGroup]="authForm" 
+      (ngSubmit)="auth()"
+  >
+  <fieldset class="col-11 offset-sm-1 col-sm-10 offset-md-3 col-md-6 border">
+    <legend > LOGIN</legend>
+    <div class="mb-3 row">
+      <label for="identifier" class="col-sm-2 col-md-3 col-form-label"><i-bs name="personCircle"></i-bs> Email</label>
+      <div class="col-sm-10 col-md-12">
+        <input 
+          #inputIdentifier
+          type="email" 
+          class="form-control" 
+          id="identifier"
+          name="identifier" 
+          placeholder="Digite seu email"
+          formControlName="email"
+          autofocus
+          autocomplete="off"
+          >
+          <small class="form-text text-success" *ngIf="authForm.get('email')!.valid && authForm.get('email')!.touched">Ok</small>
+          <small class="form-text text-danger" *ngIf="authForm.get('email')!.invalid && authForm.get('email')!.touched">Valor inválido</small>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="inputPassword" class="col-sm-2 col-form-label"><i-bs name="lockFill"></i-bs> Senha</label>
+      <div class="col-sm-10 col-md-12">
+        <input 
+          #inputPassword
+          type="password" 
+          class="form-control" 
+          id="password" 
+          placeholder="Digite sua senha"
+          formControlName="password"
+          (keyup)="onlyNumber(inputPassword,'password')"
+          >
+          <small class="form-text text-success" *ngIf="authForm.get('password')!.valid && authForm.get('password')!.touched">Ok</small>
+          <small class="form-text text-danger" *ngIf="authForm.get('password')!.invalid && authForm.get('password')!.touched">Valor inválido</small>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <div class="col-12 offset-md-0 col-md-12">
+        <div class="d-flex justify-content-between">
+          <a 
+            routerLink="/register"
+            class="btn btn-outline-primary btn-sm"
+          >
+            <i-bs name="boxArrowRight"></i-bs> CADASTRAR-ME
+          </a>
+          <button 
+              class="btn btn-primary btn-sm" 
+              type="submit"
+              [disabled]="authForm.invalid"
+            >
+          <i-bs name="boxArrowRight"></i-bs> ENTRAR
+        </button>
+        </div>
+      </div>
+    </div>
+    <section class="row" *ngIf="authFailed">
+      <div class="col">
+        <p class="alert alert-danger text-center">Identificador ou senha inválido</p>
+      </div>
+    </section>
+  </fieldset>
+</form>
+  </div>
+  <!-- USAR COMPONENTE PARA RECUPERAR EMAIL 
+  <footer class="col-12">
+    <app-recovery-password></app-recovery-password>
+  </footer> -->
+</section>

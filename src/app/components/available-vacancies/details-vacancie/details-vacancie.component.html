@@ -1,0 +1,30 @@
+<header class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Detalhes da vaga</h4>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </header>
+  <section class="modal-body" *ngIf="vacancie">
+    <section class="row align-items-center">
+        <h6 class="col-6">
+            <span class="d-block text-muted">Descrição da vaga</span>
+            {{ vacancie.DESCRICAO | lowercase }}
+            <hr>
+            <span class="d-block text-muted">Vagas disponíveis</span>
+            {{ vacancie.QUANTIDADE }}
+        </h6>
+        <h6 class="col-5 text-center text-white border-cloud py-3 mx-2 px-2" style="overflow: hidden;">
+            <span class="d-block mb-2"><u>Responsabilidades</u></span> 
+            {{ vacancie.RESPONSABILIDADES | lowercase }}
+        </h6>
+        <hr class="offset-1 col-10">
+        <h6 class="col-12 word-break">
+            <span class="d-block text-muted">Requisítos</span> 
+            {{ vacancie.REQUISITOSVAGA | lowercase }}
+        </h6>
+    </section>
+
+  </section>
+  <footer class="modal-footer">
+    
+  </footer>

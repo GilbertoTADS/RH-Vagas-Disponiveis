@@ -1,0 +1,139 @@
+<section 
+    novalidate 
+    (ngSubmit)="register()"
+    id="login" 
+    *ngFor="let control of formation.controls;index as i"
+>
+<div 
+    class="row border py-1 mb-2"
+    [formGroup]="control"
+    >
+    <h6 class="col-12"> 
+        Curso {{ i+1 }}º 
+        
+        <button class="btn btn-warning btn-sm ml-5" type="button" ngbTooltip="Adicionar Item" (click)="newFormation()">
+            <i-bs name="plusCircle"></i-bs>
+             Novo
+        </button>
+        <button class="btn btn-danger btn-sm" type="button" ngbTooltip="Excluir Item" (click)="deleteFormation(i)" [disabled]="formation.controls.length < 2">
+            <i-bs name="dashCircle"></i-bs>
+             Remover
+        </button>
+    </h6>
+    <div class="col-12 col-md-6">
+        <label for="stateBirth" class="col col-form-label"><i-bs name="pinMapFill"></i-bs> Tipo de Formação</label>
+    <select class="form-control" name="typeFormation" formControlName="typeFormation">
+        <option value="U" disabled>Selecione</option>
+        <option value="B">Ensino Fundamental Incompleto</option>
+        <option value="C">Ensino Fundamental Completo</option>
+        <option value="D">Ensino Médio Incompleto</option>
+        <option value="E">Ensino Médio Completo</option>
+        <option value="F">Ensino Técnico Incompleto</option>
+        <option value="G">Ensino Técnico Completo</option>
+        <option value="H">Ensino Superior Incompleto</option>
+        <option value="I">Ensino Superior Completo</option>
+        <option value="J">Pós Graduação Incompleto</option>
+        <option value="K">Pós Graduação Completo</option>
+    </select>
+    </div>
+    <div class="col-sm-10 col-md-6">
+        <label for="institution" class="col col-form-label"><i-bs name="bookmarkCheckFill"></i-bs> Instituição</label>
+        <input 
+            #inputinstitution
+            type="text" 
+            class="form-control" 
+            name="institution" 
+            formControlName="institution"
+            placeholder="Digite o nome completo da instituição"
+            autocomplete="off"
+        >
+        <!-- <small class="form-text text-success" *ngIf="authForm.get('formation')!.valid && authForm.get('formation')!.touched">Ok</small>
+        <small class="form-text text-danger" *ngIf="authForm.get('formation')!.invalid && authForm.get('formation')!.touched">Valor inválido</small> -->
+    </div>
+    <div class="col-sm-10 col-md-6">
+        <label for="nameOfCourse" class="col col-form-label"><i-bs name="bookFill"></i-bs> Curso</label>
+        <input 
+            #inputnameOfCourse
+            type="text" 
+            class="form-control" 
+            name="nameOfCourse" 
+            placeholder="Digite o nome completo do curso"
+            formControlName="nameOfCourse"
+            autocomplete="off"
+        >
+        <!-- <small class="form-text text-success" *ngIf="authForm.get('formation')!.valid && authForm.get('formation')!.touched">Ok</small>
+        <small class="form-text text-danger" *ngIf="authForm.get('formation')!.invalid && authForm.get('formation')!.touched">Valor inválido</small> -->
+    </div>
+    <div class="col-sm-3 col-md-2 col-lg-1 mr-5">
+        <h6>Concluído</h6>
+        <div class="form-check">
+            <label class="col form-check-label">
+            <input
+                #finishYes
+                type="radio" 
+                class="form-check-input" 
+                name="courseFinished"
+                formControlName="courseFinished"
+                value="Y"
+            >
+                Sim
+            </label>
+        <label class="col form-check-label">
+        <input
+            #finishNo
+            type="radio" 
+            class="form-check-input" 
+            name="courseFinished"
+            formControlName="courseFinished"
+            value="N"
+            >
+                Não
+            </label>
+        </div>
+    </div>
+    <div class="col-sm-10 col-md-4 col-lg-3" *ngIf="formation.controls[i].get('courseFinished')!.value === 'Y';else NoConclusion ">
+        <label for="dateConclusion" class="col col-form-label"><i-bs name="calendarCheck"></i-bs> Data conclusão</label>
+        <input 
+            #inputdateConclusion
+            type="date" 
+            class="form-control" 
+            id="dateConclusion"
+            name="dateConclusion" 
+            formControlName="dateConclusion"
+        >
+        <!-- <small class="form-text text-success" *ngIf="authForm.get('formation')!.valid && authForm.get('formation')!.touched">Ok</small>
+        <small class="form-text text-danger" *ngIf="authForm.get('formation')!.invalid && authForm.get('formation')!.touched">Valor inválido</small> -->
+    </div>
+    <ng-template #NoConclusion>
+        <div class="col-sm-10 col-md-4 col-lg-3">
+            <label for="dateInited" class="col col-form-label"><i-bs name="calendarCheck"></i-bs> Início</label>
+            <input 
+                #inputdateInited
+                type="date" 
+                class="form-control" 
+                id="dateInited"
+                name="dateInited" 
+                [value]="formation.controls[i].get('dateInited')?.value"
+                (change)="formation.controls[i].get('dateInited')!.setValue(inputdateInited.value)"
+            >
+            <!-- <small class="form-text text-success" *ngIf="authForm.get('formation')!.valid && authForm.get('formation')!.touched">Ok</small>
+            <small class="form-text text-danger" *ngIf="authForm.get('formation')!.invalid && authForm.get('formation')!.touched">Valor inválido</small> -->
+        </div>
+        <div class="col-sm-10 col-md-4 col-lg-3">
+            <label for="dateFinal{{i}}" class="col col-form-label"><i-bs name="calendarCheck"></i-bs> Prev. conclusão</label>
+            <input 
+                #inputdateFinal
+                type="date" 
+                class="form-control" 
+                id="dateFinal{{i}}"
+                name="dateFinal{{i}}" 
+                autocomplete="off"
+                [value]="formation.controls[i].get('dateFinal')?.value"
+                (change)="formation.controls[i].get('dateFinal')!.setValue(inputdateFinal.value)"
+            >
+            <!-- <small class="form-text text-success" *ngIf="authForm.get('formation')!.valid && authForm.get('formation')!.touched">Ok</small>
+            <small class="form-text text-danger" *ngIf="authForm.get('formation')!.invalid && authForm.get('formation')!.touched">Valor inválido</small> -->
+        </div>
+    </ng-template>
+</div>
+</section>

@@ -1,0 +1,20 @@
+input.ng-invalid.ng-touched, select.ng-invalid.ng-touched{
+    border:1px solid red;
+}
+input.ng-valid.ng-touched, select.ng-valid.ng-touched{
+    border:1px solid green;
+}
+fieldset{
+    padding-bottom:20px;
+}
+h6.legend-fildset{
+    padding:25px 10px;
+    background:#1661ab !important;
+    color:white;
+}
+input.ng-invalid.ng-touched, select.ng-invalid.ng-touched{
+    border:1px solid red;
+}
+input.ng-valid.ng-touched, select.ng-valid.ng-touched{
+    border:1px solid green;
+}

@@ -1,0 +1,54 @@
+<section class="row align-items-center justify-content-between shadow my-2 mx-md-1 p-0">
+    <header class="col-12 col-lg-12">
+        <nav class="row bg-light ">
+            <div class="col-12 col-lg-6">
+                <h4 class="d-none d-md-block text-muted"> Vagas disponíveis</h4>
+                <h6 class="d-block d-md-none text-muted"> Vagas disponíveis</h6>
+            </div>
+            <div class="col-12 col-lg-4">
+                <form class="input-group mb-3">
+                    <input type="text" class="form-control" [formControl]="filter" placeholder="O que procura?" aria-label="search vacancies" aria-describedby="basic-addon2" value=" ">
+                    <div class="input-group-append" ngbTooltip="Apenas digite o termo desejado" placement="bottom left">
+                        <button class="btn btn-primary" type="button" disabled="true">
+                            <i-bs name="search"> </i-bs>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <section class="col-12 col-lg-12" style="max-height:300px;overflow-x: scroll;">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">Ordem</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Quatidade<span class="d-none d-md-inline"> de vagas</span></th>
+            <th scope="col">Unidade</th>
+            <th scope="col">Ações</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let v of vacancie$ | async; index as i">
+            <th scope="row">{{ i+1 }}</th>
+            <td class="row">
+              <ngb-highlight [result]="v.DESCRICAO | lowercase" [term]="filter.value" class="col-11 text-truncate"></ngb-highlight>
+            </td>
+            <td><ngb-highlight [result]="v.QUANTIDADE | number" [term]="filter.value"></ngb-highlight></td>
+            <td><ngb-highlight [result]="v.UNIDADE | lowercase" [term]="filter.value"></ngb-highlight></td>
+            <td class="d-flex">
+                <button class="btn btn-primary btn-sm" ngbTooltip="Ver detalhes" (click)="openDetails(v)">
+                    <i-bs name="eye"></i-bs>
+                </button>
+                <button class="btn btn-warning btn-sm text-white" ngbTooltip="Inscrever-me" (click)="subscribeMe(v)">
+                    <i-bs name="checkCircleFill"></i-bs>
+                </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+    </section>
+    <footer class="col-12 col-lg-12">
+
+    </footer>
+</section>
